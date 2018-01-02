@@ -32,7 +32,7 @@ public class Transmitter implements Runnable {
         publishKeyValue("TEST_KEY2", "TEST_VALUE2");
     }
     
-    public void publishKeyValue(String key, String value) {
+    private void publishKeyValue(String key, String value) {
         publisher.send(TAG + "." + key + ":" + value);
     }
     
@@ -47,7 +47,15 @@ public class Transmitter implements Runnable {
         return System.currentTimeMillis();
     }
     
-    private static void setState(){
-        
+    public void teleopInit() {
+        publishKeyValue("STATE", "TELEOP_INIT");
+    }
+    
+    public void autonomousInit() {
+        publishKeyValue("STATE", "AUTO_INIT");
+    }
+    
+    public void disabledInit() {
+        publishKeyValue("STATE", "DISABLED_INIT");
     }
 }

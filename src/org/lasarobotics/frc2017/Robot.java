@@ -36,17 +36,17 @@ public class Robot extends HazyIterative {
 
     @Override
     public void teleopInit() {
-        transmitter.publishKeyValue("STATE", "TELE_INIT");
+        transmitter.teleopInit();
     }
 
     @Override
     public void autonomousInit() {
-        transmitter.publishKeyValue("STATE", "AUTO_INIT");
+        transmitter.autonomousInit();
     }
 
     @Override
     public void disabledInit() {
-        transmitter.publishKeyValue("STATE", "DISABLED_INIT");
+        transmitter.disabledInit();
     }
 
     @Override
@@ -60,8 +60,8 @@ public class Robot extends HazyIterative {
             transmitter.run();
             counter++;
         }
-        new Thread(receiver).start();
-        ScheduledFuture<?> recieverHandle = scheduler.scheduleAtFixedRate(receiver, 0, 33, TimeUnit.MILLISECONDS);
+        //new Thread(receiver).start();
+        ScheduledFuture<?> receiverHandle = scheduler.scheduleAtFixedRate(receiver, 0, 33, TimeUnit.MILLISECONDS);
         
     }
     
