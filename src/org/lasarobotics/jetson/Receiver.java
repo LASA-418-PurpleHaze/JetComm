@@ -23,17 +23,15 @@ public class Receiver implements Runnable {
     Receiver () {
         subscriber = context.socket(ZMQ.SUB);
         System.out.println("subscriber connecting...");
-        subscriber.connect("tcp://10.4.18.3:5803");
+        subscriber.connect("tcp://10.4.18.3:5804");
         System.out.println("successful subscriber connect");
         subscriber.subscribe("".getBytes());
     }
 
     @Override
     public void run() {
-        while (true) {
-            message = subscriber.recvStr();
-            System.out.println("Received: " + message);
-        }
+        message = subscriber.recvStr();
+        System.out.println("Received: " + message);
     }
     
     public static Receiver getReceiver() {

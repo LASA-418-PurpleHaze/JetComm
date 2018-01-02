@@ -19,6 +19,7 @@ public class Transmitter implements Runnable {
     private static Context context = ZMQ.context(1);
     private static Socket publisher;
     private static Transmitter transmitter;
+    private static String state;
     private Transmitter() { 
         publisher = context.socket(ZMQ.PUB);
         publisher.bind("tcp://*:5804");
@@ -29,7 +30,6 @@ public class Transmitter implements Runnable {
     public void run() {
         publishKeyValue("TEST_KEY", "TEST_VALUE");
         publishKeyValue("TEST_KEY2", "TEST_VALUE2");
-        
     }
     
     public void publishKeyValue(String key, String value) {
@@ -45,5 +45,9 @@ public class Transmitter implements Runnable {
     
     private long getAbsoluteTime() {
         return System.currentTimeMillis();
+    }
+    
+    private static void setState(){
+        
     }
 }
